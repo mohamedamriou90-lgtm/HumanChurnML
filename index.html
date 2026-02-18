@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HumanChurnML - Universal Customer Intelligence</title>
+    <style>
+        /* Apple-inspired design */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+
+        /* Header */
+        .header {
+            padding: 2rem;
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #fff, #e0e0e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Main content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Cards */
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: transform 0.3s;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.15);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .card p {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .stat-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .stat-label {
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+
+        /* Graph placeholder */
+        .graph-container {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 3rem 0;
+        }
+
+        .graph {
+            width: 100%;
+            height: 300px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .bar-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            width: 100%;
+            height: 250px;
+            padding: 0 2rem;
+        }
+
+        .bar {
+            width: 60px;
+            background: linear-gradient(to top, #4CAF50, #8BC34A);
+            border-radius: 10px 10px 0 0;
+            transition: height 1s;
+            position: relative;
+        }
+
+        .bar-label {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+
+        .bar-value {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            margin: 0.5rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0,0,0,0.2);
+            margin-top: 3rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .bar {
+                width: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🤖 HumanChurnML</h1>
+        <p>Universal Customer Intelligence · Predict churn for any business</p>
+        <div style="margin-top: 2rem;">
+            <a href="https://github.com/mohamedamirou90-lgtm/HumanChurnML" class="btn">📦 View on GitHub</a>
+            <a href="#" class="btn btn-outline">🚀 Live Demo (Coming Soon)</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Stats -->
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number">190K+</div>
+                <div class="stat-label">Customers Analyzed</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">3.9x</div>
+                <div class="stat-label">Super Customer Value</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Industries</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">95%</div>
+                <div class="stat-label">Accuracy</div>
+            </div>
+        </div>
+
+        <!-- The Discovery -->
+        <div class="graph-container">
+            <h2 style="margin-bottom: 2rem;">📈 The Universal Pattern</h2>
+            <div class="graph">
+                <div class="bar-container">
+                    <div class="bar" style="height: 40px;">
+                        <div class="bar-value">2%</div>
+                        <div class="bar-label">Tried Once</div>
+                    </div>
+                    <div class="bar" style="height: 80px;">
+                        <div class="bar-value">18%</div>
+                        <div class="bar-label">Casual</div>
+                    </div>
+                    <div class="bar" style="height: 140px;">
+                        <div class="bar-value">47%</div>
+                        <div class="bar-label">Regular</div>
+                    </div>
+                    <div class="bar" style="height: 200px;">
+                        <div class="bar-value">70%</div>
+                        <div class="bar-label">Hardcore</div>
+                    </div>
+                    <div class="bar" style="height: 240px;">
+                        <div class="bar-value">84%</div>
+                        <div class="bar-label">Obsessed</div>
+                    </div>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 3rem; opacity: 0.8;">
+                <b>Key Discovery:</b> Super Customers are worth <b style="color: #FFD700;">3.9x more</b> than one-time buyers
+            </p>
+        </div>
+
+        <!-- Features -->
+        <div class="card-container">
+            <div class="card">
+                <h3>🔮 Universal Predictions</h3>
+                <p>Works for ANY business - gaming, e-commerce, SaaS, music. The same human patterns apply everywhere.</p>
+            </div>
+            <div class="card">
+                <h3>📊 Beautiful Dashboard</h3>
+                <p>Upload your CSV and get instant predictions with our Apple-style interface.</p>
+            </div>
+            <div class="card">
+                <h3>🎯 Actionable Insights</h3>
+                <p>Not just predictions - we tell you exactly what to do to save each customer.</p>
+            </div>
+        </div>
+
+        <!-- How it works -->
+        <div style="text-align: center; margin: 4rem 0;">
+            <h2>🚀 How It Works</h2>
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap; margin-top: 3rem;">
+                <div style="flex: 1; min-width: 200px; padding: 1rem;">
+                    <div style="background: rgba(255,255,255,0.1); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                        <span style="font-size: 2rem;">1</span>
+                    </div>
+                    <h3>Upload Data</h3>
+                    <p style="opacity: 0.8;">CSV with customer activities</p>
+                </div>
+                <div style="flex: 1; min-width: 200px; padding: 1rem;">
+                    <div style="background: rgba(255,255,255,0.1); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                        <span style="font-size: 2rem;">2</span>
+                    </div>
+                    <h3>AI Analysis</h3>
+                    <p style="opacity: 0.8;">Universal pattern detection</p>
+                </div>
+                <div style="flex: 1; min-width: 200px; padding: 1rem;">
+                    <div style="background: rgba(255,255,255,0.1); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                        <span style="font-size: 2rem;">3</span>
+                    </div>
+                    <h3>Get Results</h3>
+                    <p style="opacity: 0.8;">Risk scores + actions</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div style="text-align: center; background: rgba(255,255,255,0.1); padding: 3rem; border-radius: 20px; margin: 3rem 0;">
+            <h2 style="margin-bottom: 1rem;">Ready to predict churn?</h2>
+            <p style="margin-bottom: 2rem; opacity: 0.8;">Join companies using HumanChurnML to save millions in customer revenue</p>
+            <a href="https://github.com/mohamedamirou90-lgtm/HumanChurnML" class="btn">📦 Get Started</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>🤖 HumanChurnML · Built with ❤️ using real data from 190,000+ customers</p>
+        <p style="margin-top: 1rem; opacity: 0.6;">© 2024 · Open Source · MIT License</p>
+    </div>
+</body>
+</html>
