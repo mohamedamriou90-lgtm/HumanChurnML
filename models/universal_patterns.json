@@ -1,0 +1,24 @@
+{
+  "discovered_patterns": {
+    "gaming": {
+      "Tried Once": {"retention_7day": 0.02, "value_multiplier": 1.0},
+      "Casual": {"retention_7day": 0.18, "value_multiplier": 2.5},
+      "Regular": {"retention_7day": 0.47, "value_multiplier": 5.0},
+      "Hardcore": {"retention_7day": 0.70, "value_multiplier": 8.0},
+      "Obsessed": {"retention_7day": 0.84, "value_multiplier": 12.0}
+    },
+    "ecommerce": {
+      "Tried Once": {"avg_spend": 160.99, "repeat_rate": 0.15},
+      "Casual": {"avg_spend": 245.67, "repeat_rate": 0.35},
+      "Regular": {"avg_spend": 389.45, "repeat_rate": 0.55},
+      "Loyal": {"avg_spend": 512.33, "repeat_rate": 0.75},
+      "Super Customer": {"avg_spend": 629.78, "repeat_rate": 0.90}
+    },
+    "universal": {
+      "engagement_multiplier": 3.9,
+      "discovery_date": "2024-03-19",
+      "total_customers_analyzed": 189630,
+      "industries_covered": ["gaming", "ecommerce"]
+    }
+  }
+}
